@@ -43,7 +43,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar
-          title="TextUtils2"
+          title="JText"
           About="About"
           mode={mode}
           togglemode={togglemode}
