@@ -3,12 +3,16 @@ import React ,{useState} from 'react'
 export default function Textarea(props) {
   const handleUpClick=()=>{
     let newText = text.toUpperCase();
-    setText(newText)
+    setText(newText);
+
+    props.showAlert("converted to uppercase","success")
+    
     
   }
   const handleLowClick=()=>{
     let newText=text.toLowerCase();
-    setText(newText)
+    setText(newText);
+    props.showAlert("converted to lowercase","success")
   }
   const handleOnChange=(event)=>{
    
@@ -18,15 +22,24 @@ export default function Textarea(props) {
     let newText=new SpeechSynthesisUtterance(text);
 
     window.speechSynthesis.speak(newText);
+    props.showAlert("Speaking","success");
+  
   }
   const handleCopy=()=>{
     let newText=document.getElementById("mybox")
     newText.select();
-    navigator.clipboard.writeText(newText.value)
+    navigator.clipboard.writeText(newText.value);
+    props.showAlert("copied to clipboard","success");
    }
   const handleClearClick=()=>{
     let newText="";
-    setText(newText)
+    setText(newText);
+    props.showAlert("Text Cleared","success");
+  }
+  const handleExtraSpace=()=>{
+    let newText=text.split(/[ ]+/);
+    setText(newText.join(" "));
+    props.showAlert("Extra spaces removed","success")
   }
   const [text,setText] = useState('');
   return (
@@ -41,6 +54,7 @@ export default function Textarea(props) {
 <button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to Lowercase</button>
 <button className="btn btn-primary mx-2" onClick={handleSpeakClick}>Speak out</button>
 <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy</button>
+<button className="btn btn-primary mx-2" onClick={handleExtraSpace}>Remove Extra Spaces</button>
 <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear</button>
     </div>
     <div className="container" style={{color:props.mode==='dark'?'white':'black'}}>
