@@ -1,32 +1,37 @@
 import React, { useState } from 'react'
 
-export default function About() {
+export default function About(props) {
 
-  const [myStyle,setMyStyle]=useState({
-    color:'white',
-    backgroundColor:'black'
+//   const [myStyle,setMyStyle]=useState({
+//     color:'white',
+//     backgroundColor:'black'
 
-})
-const [btnText,setBtntext]=useState("turn on dark mode")
+// })
+// const [btnText,setBtntext]=useState("turn on dark mode")
 
-const toggleStyle=()=>{
-  if (myStyle.color === 'white'){
-    setMyStyle({
-      color:'black',
-    backgroundColor:'white'
+// const toggleStyle=()=>{
+//   if (myStyle.color === 'white'){
+//     setMyStyle({
+//       color:'black',
+//     backgroundColor:'white'
    
-    })
-  setBtntext("turn on dark mode")
-  }
-    else{
-      setMyStyle({
-        color:'white',
-      backgroundColor:'black'
-      })
-      setBtntext("turn off dark mode")
-    }
-  }
+//     })
+//   setBtntext("turn on dark mode")
+//   }
+//     else{
+//       setMyStyle({
+//         color:'white',
+//       backgroundColor:'black'
+//       })
+//       setBtntext("turn off dark mode")
+//     }
+//   }
 
+
+let myStyle={
+  color:props.mode === "dark"?"white":"#042743",
+  backgroundColor:props.mode === "dark"?"#042743":"white",
+}
 
  
   return (
@@ -69,6 +74,6 @@ const toggleStyle=()=>{
       </div>
     </div>
     
-  </div><div className="container my-3"><button onClick={toggleStyle} type="button" className="btn btn-primary">{btnText}</button></div></div>
+  </div></div>
   )
 }
